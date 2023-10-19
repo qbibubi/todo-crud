@@ -85,46 +85,52 @@ function App() {
 
   return (
     <>
-      <div className="main">
+      <div className="content">
         <div className="todo-wrapper">
-          <div className="todo-input">
-            <label htmlFor="todo-input">Task</label>
-            <input
-              type="text"
-              name="todo-input"
-              id="todo-input"
-              ref={todoRef}
-            />
-            <input type="button" value="Add todo" onClick={addTodo} />
-            <br />
-          </div>
-          <div className="todo-sort">
-            <label htmlFor="sort">Sort</label>
-            <select
-              name="sort"
-              id="sort"
-              value={sorted}
-              onChange={(e) => setSorted(e.target.value)}
-            >
-              <option value="date">By date</option>
-              <option value="alphabetical">Alphabetically</option>
-            </select>
+          <div className="todo-input-wrapper">
+            <div className="todo-input">
+              <label htmlFor="todo-input">Task</label>
+              <input
+                type="text"
+                name="todo-input"
+                id="todo-input"
+                ref={todoRef}
+              />
+              <input type="button" value="Add todo" onClick={addTodo} />
+              <br />
+            </div>
+            <div className="todo-sort">
+              <label htmlFor="sort">Sort</label>
+              <select
+                name="sort"
+                id="sort"
+                value={sorted}
+                onChange={(e) => setSorted(e.target.value)}
+              >
+                <option value="date">By date</option>
+                <option value="alphabetical">Alphabetically</option>
+              </select>
+            </div>
           </div>
 
           <ul className="todos">
             {todos
               .sort((a, b) => sortBy(a, b))
               .map((todo) => (
-                <li key={todo.id}>
-                  <input
-                    type="checkbox"
-                    name="todo-item"
-                    id="todo-item"
-                    checked={todo.checked}
-                    onChange={() => toggleTodo(todo.id)}
-                  />
-                  <label htmlFor="todo-item">{todo.task}</label>
-                </li>
+                <div className="todo-item">
+                  <li key={todo.id}>
+                    <input
+                      type="checkbox"
+                      name="todo-input"
+                      id="todo-input"
+                      checked={todo.checked}
+                      onChange={() => toggleTodo(todo.id)}
+                    />
+                    <div></div>
+                    <label htmlFor="todo-input">{todo.task}</label>
+                  </li>
+                  <p>{todo.createdTimestamp}</p>
+                </div>
               ))}
           </ul>
         </div>

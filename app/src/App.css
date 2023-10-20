@@ -6,11 +6,16 @@
 }
 
 .todo-wrapper {
-  width: 65%;
+  width: 60%;
   background-color: #232323;
 }
 
 .todo-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
   background-color: #202020;
   display: flex;
 }
@@ -18,11 +23,6 @@
 .todo-input {
   padding: 0.25rem;
 }
-
-.todo-input:focus {
-  outline: none;
-}
-
 
 .todo-sort {
   padding: 0.25rem;
@@ -37,12 +37,21 @@
 }
 
 .todo-item {
-  height: 1.5rem;
-  padding: 0.1rem;
+  height: 1.0rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.even { 
+  background-color: #232323;
+}
+
+.odd {
+  background-color: #282828;
+}
+
 
 li {
   display: flex;
@@ -59,10 +68,30 @@ p {
   color: #404040;
 }
 
-.even { 
-  background-color: #232323;
+section {
+  border: none;
 }
 
-.odd {
-  background-color: #282828;
+
+/*
+* Input 
+*/
+input[type="text"] {
+  width: 15rem;
+  border: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+input[type="button"] {
+  border: none;
+}
+
+/*
+* Checkbox 
+*/
+input[type="checkbox"]:hover { 
+  cursor: pointer;
 }

@@ -58,10 +58,6 @@ function App() {
     }
 
     foundTodo.checked = !foundTodo.checked;
-    if (foundTodo.checked) {
-      foundTodo;
-    }
-
     setTodos(updatedTodos);
   };
 
@@ -84,9 +80,7 @@ function App() {
   };
 
   const convertTimestamp = (timestamp: number) => {
-    return new Date(timestamp)
-      .toUTCString()
-      // .replace('T', ' ');
+    return new Date(timestamp).toUTCString();
   }
 
   return (

@@ -84,62 +84,64 @@ function App() {
   };
 
   const convertTimestamp = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString().toString();
+    return new Date(timestamp)
+      .toUTCString()
+      // .replace('T', ' ');
   }
 
   return (
-    <>
-      <div className="content">
-        <div className="todo-wrapper">
-          <div className="todo-input-wrapper">
-            <div className="todo-input">
-              <label htmlFor="todo-input">Task</label>
-              <input
-                type="text"
-                name="todo-input"
-                id="todo-input"
-                ref={todoRef}
-              />
-              <input type="button" value="Add todo" onClick={addTodo} />
-              <br />
-            </div>
-            <div className="todo-sort">
-              <label htmlFor="sort">Sort</label>
-              <select
-                name="sort"
-                id="sort"
-                value={sorted}
-                onChange={(e) => setSorted(e.target.value)}
-              >
-                <option value="date">By date</option>
-                <option value="alphabetical">Alphabetically</option>
-              </select>
-            </div>
+    <div className="content">
+      <div className="todo-wrapper">
+        <div className="todo-input-wrapper">
+          <div className="todo-input">
+            <input
+              type="text"
+              name="todo-input"
+              id="todo-input"
+              placeholder="Input your todo..."
+              maxLength={50}
+              ref={todoRef}
+            />
+            <input type="button" value="Add todo" onClick={addTodo} />
+            <br />
           </div>
-
-          <ul className="todos">
-            {todos
-              .sort((a, b) => sortBy(a, b))
-              .map((todo, index:number) => (
-                <div className={`todo-item ${index%2==0 ? 'even' : 'odd'}`}>
-                  <li key={todo.id} >
-                    <input
-                      type="checkbox"
-                      name="todo-input"
-                      id="todo-input"
-                      checked={todo.checked}
-                      onChange={() => toggleTodo(todo.id)}
-                    />
-                    <div></div>
-                    <label htmlFor="todo-input">{todo.task}</label>
-                  </li>
-                  <p>{convertTimestamp(todo.createdTimestamp)}</p>
-                </div>
-              ))}
-          </ul>
+          
+          <div className="todo-sort">
+            <label htmlFor="sort">Sort</label>
+            <select
+              name="sort"
+              id="sort"
+              value={sorted}
+              onChange={(e) => setSorted(e.target.value)}
+            >
+              <option value="date">By date</option>
+              <option value="alphabetical">Alphabetically</option>
+            </select>
+          </div>
         </div>
+
+        <ul className="todos">
+          {todos
+            .sort((firstTodo: Todo, secondTodo: Todo) => sortBy(firstTodo, secondTodo))
+            .map((todo: Todo, index: number) => (
+              <div className={`todo-item ${index%2==0 ? 'even' : 'odd'}`}>
+                <li key={todo.id} >
+                  <input
+                    type="checkbox"
+                    name="todo-input"
+                    id="todo-input"
+                    checked={todo.checked}
+                    onChange={() => toggleTodo(todo.id)}
+                  />
+                  <div></div>
+                  <label htmlFor="todo-input">{todo.task}</label>
+                </li>
+                <p>{convertTimestamp(todo.createdTimestamp)}</p>
+              </div>
+            ))}
+        </ul>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -10,6 +10,11 @@
   background-color: #232323;
 }
 
+.todo-input-wrapper {
+  background-color: #202020;
+  display: flex;
+}
+
 .todo-input {
   padding: 0.25rem;
 }
@@ -17,6 +22,7 @@
 .todo-input:focus {
   outline: none;
 }
+
 
 .todo-sort {
   padding: 0.25rem;
@@ -50,5 +56,13 @@ label {
 
 p {
   font-style: italic;
-  color: #444444;
+  color: #404040;
+}
+
+.even { 
+  background-color: #232323;
+}
+
+.odd {
+  background-color: #323232;
 }

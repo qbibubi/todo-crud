@@ -9,6 +9,7 @@ type Todo = {
   checked: boolean;
 };
 
+
 function App() {
   const [todos, setTodos] = useState<Array<Todo>>([]);
   const [sorted, setSorted] = useState<string>("date");
@@ -61,7 +62,6 @@ function App() {
       foundTodo;
     }
 
-    // localStorage.setItem("todos", JSON.stringify(todos));
     setTodos(updatedTodos);
   };
 
@@ -82,6 +82,14 @@ function App() {
       return 0;
     }
   };
+
+  const convertTimestamp = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString().toString();
+  }
+
+  const changeStyle = (index: number) => {
+    return index % 2 == 0 ? "background-color: #404040" : "background-color: #232323";
+  }
 
   return (
     <>
@@ -116,9 +124,9 @@ function App() {
           <ul className="todos">
             {todos
               .sort((a, b) => sortBy(a, b))
-              .map((todo) => (
-                <div className="todo-item">
-                  <li key={todo.id}>
+              .map((todo, index:number) => (
+                <div className={`todo-item ${index%2==0 ? 'even' : 'odd'}`}>
+                  <li key={todo.id} >
                     <input
                       type="checkbox"
                       name="todo-input"
@@ -129,7 +137,7 @@ function App() {
                     <div></div>
                     <label htmlFor="todo-input">{todo.task}</label>
                   </li>
-                  <p>{todo.createdTimestamp}</p>
+                  <p>{convertTimestamp(todo.createdTimestamp)}</p>
                 </div>
               ))}
           </ul>

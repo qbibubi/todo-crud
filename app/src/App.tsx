@@ -87,10 +87,6 @@ function App() {
     return new Date(timestamp).toLocaleDateString().toString();
   }
 
-  const changeStyle = (index: number) => {
-    return index % 2 == 0 ? "background-color: #404040" : "background-color: #232323";
-  }
-
   return (
     <>
       <div className="content">

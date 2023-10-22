@@ -68,25 +68,11 @@ p {
   color: #404040;
 }
 
-section {
-  border: none;
-}
-
-
 /*
 * Input 
 */
 input[type="text"] {
   width: 15rem;
-  border: none;
-}
-
-input[type="text"]:focus {
-  outline: none;
-}
-
-input[type="button"] {
-  border: none;
 }
 
 /*

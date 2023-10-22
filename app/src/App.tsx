@@ -80,7 +80,9 @@ function App() {
   };
 
   const convertTimestamp = (timestamp: number) => {
-    return new Date(timestamp).toUTCString();
+    return new Date(timestamp)
+      .toISOString()
+      .replace('T', ' ');
   }
 
   return (
